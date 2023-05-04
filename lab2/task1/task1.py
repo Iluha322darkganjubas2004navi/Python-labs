@@ -38,3 +38,15 @@ def average_word_lenght(text: str) -> float:
         return round(words_len_in_characters / len(words), 2)
     else:
         return 0
+
+def top_k_repeated_n_grams(text: str, k=10, n=4):
+    words=re.findall(WORDS, text.lower())
+    dictofNgrams={}
+    for i in range(len(words)- n + 1):
+        n_gram=' '.join([str(word) for word in words[i:i + n]])
+        if n_gram not in dictofNgrams:
+            dictofNgrams[n_gram] = 1
+        else:
+            dictofNgrams[n_gram] += 1
+    sorted_ngrams=sorted(dictofNgrams.items(), key=lambda x:x[1],reverse=True)
+    return sorted_ngrams[0:k]
