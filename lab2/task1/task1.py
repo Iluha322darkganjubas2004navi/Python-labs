@@ -29,3 +29,12 @@ def average_sentence_lenght(text: str) -> float:
         return round(words_len / amount_of_sentences(text), 2)
     else:
         return 0
+
+def average_word_lenght(text: str) -> float:
+    words = re.findall(WORDS, text)
+    words_len_in_characters = sum(len(word) for word in words)
+
+    if len(words) != 0:
+        return round(words_len_in_characters / len(words), 2)
+    else:
+        return 0

@@ -4,8 +4,7 @@ SENTENCES = r'[.!\?]+'
 NON_DECL_SENTENCES = r'[!\?]+'
 
 ABBREVIATIONS1 = [
-#'jan.', 'feb.', 'mar.', 'apr.', 'jun.', 'jul.', 'aug.', 'sep.', 'oct.', 'nov.', 'dec.',
-#'mon.', 'tue.', 'wed.', 'thu', 'fri.', 'sat.', 'sun.',
+'mon.', 'tue.', 'wed.', 'thu', 'fri.', 'sat.', 'sun.',
 'etc.', 'vs.', 'jr.', 'sr.', 'mr.', 'ms.', 'mrs.', 'smb.', 'smth.', 'adj.', 'prep.', 'pp.', 'par.', 'ex.',
 'pl.', 'edu.', 'appx.', 'sec.', 'gm.', 'cm.', 'yr.', ]
 
