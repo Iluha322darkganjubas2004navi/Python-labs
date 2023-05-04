@@ -13,3 +13,6 @@ def amount_of_sentences(text: str) -> int:
         amount -= text.count(abbreviation) * 2
 
     return
+
+def amount_of_non_declarative_sentences(text: str) -> int:
+    return len(re.findall(NON_DECL_SENTENCES, text))
