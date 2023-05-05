@@ -38,6 +38,29 @@ def exec_command(command: str, arguments: str, storage: Container) -> bool:
     match command:
         case 'help':
             print(Commands)
+        case 'add':
+            arguments_list = arguments.split()
+            for el in arguments_list:
+                storage.add(el)
+        case 'remove':
+            storage.remove(arguments)
+        case 'list':
+            print(storage.list())
+        case 'find':
+            if len(arguments) != 0:
+                arguments_list=arguments.split()
+                for el in arguments_list:
+                    found = storage.find(el)
+                    print(f'{el} found' if found else f'{el} not found')
+        case 'grep':
+            res = storage.grep(arguments)
+            if len(res) != 0:
+                print('Found values: ' + str(res))
+        case 'save':
+            storage.save
+            print('Container was saved successefully')
+
+
 
 print('Welcome to my own set!!!')
 username=input('Enter username: ')
