@@ -17,8 +17,8 @@ print('Average length of the sentence in characters: ', average_sentences_length
 print('Average length of the word in the text in characters', average_word_length)
 
 if n_grams == {}:
-    print('No {0}-grams found.'.format(n))
+    print('No grams found.')
 else:
-    print('List of top-{0}, {1}-grams: '.format(k, n))
+    print('Top K-repeated N-grams: ')
     for gram, count in n_grams.items():
-        print('Count: {0:>3} | {1}-gram: {2}'.format(count, n, ' '.join(gram)))
+        print(gram)
