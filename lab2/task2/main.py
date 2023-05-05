@@ -1,3 +1,5 @@
+from container import Container
+
 Commands ='''
 * help - show all commands
 * add <key> [key, …] – add one or more elements to the container (if the element is already in there then don’t add);
@@ -21,7 +23,17 @@ def parse_command():
         arguments = user_input[1]
     return command, arguments
 
+def ask_save_container(storage: Container):
+    answer = input('Do you want to save container?(y/n): ')
+    if answer == 'y':
+        storage.save()
 
+def ask_load_container(storage: Container):
+    answer = input('Do you want to load container?(y/n): ')
+    if answer == 'y':
+        storage.load()
+def greeting(username: str):
+    print(f'Hello, {username}!')
 
 print('Welcome to my own set!!!')
 username=input('Enter username: ')
@@ -30,3 +42,4 @@ print ('Type command or \'help\ to get info about available commands.')
 is_working = True
 while is_working:
     command, args = parse_command()
+    is_working = exec_command(command, args, storage)
