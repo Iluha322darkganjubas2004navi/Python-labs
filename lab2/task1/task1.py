@@ -2,7 +2,11 @@ import re
 
 
 def sentences_split(text):
-    abbreviations = ['mr', 'mrs', 'ms', 'dr', 'prof', 'rev', 'etc', 'vs.', 'pl.', 'jr.']
+    abbreviations = [
+    'jan', 'feb', 'mar', 'apr', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec',
+    'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun',
+    'etc', 'vs', 'jr', 'sr', 'mr', 'ms', 'mrs', 'smb', 'smth', 'adj', 'prep', 'pp', 'par', 'ex',
+    'pl', 'edu', 'appx', 'sec', 'gm', 'cm', 'yr']
     sentence_pattern = r'^.*?[.?!](?= |\w|$|"|\')'
     sentences = []
 
