@@ -1,6 +1,6 @@
 from container import Container
 
-Commands ='''
+Commands = '''
 * help - show all commands
 * add <key> [key, …] – add one or more elements to the container (if the element is already in there then don’t add);
 * remove <key> – delete key from container;
@@ -74,10 +74,11 @@ def exec_command(command: str, arguments: str, storage: Container) -> bool:
     return True
 
 
-print('Welcome to my own set!!!')
-username=input('Enter username: ')
-print (f'Hello, {username}!')
-print ('Type command or \'help\ to get info about available commands.')
+print('Welcome to my own set!')
+username = input('Enter username: ')
+storage = Container(username)
+print(f'Hello, {username}!')
+print('Type command or \'help\' to get info about available commands.')
 is_working = True
 while is_working:
     command, args = parse_command()
