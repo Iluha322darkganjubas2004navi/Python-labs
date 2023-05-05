@@ -35,3 +35,13 @@ class Container:
         os.makedirs(os.path.dirname(self._filename), exist_ok=True)
         with open(self._filename, "w") as outfile:
             json.dump(list(self._storage), outfile)
+    def load(self):
+        if os.path.exists(self._filename):
+            with open(self._filename, 'r') as infile:
+                self._storage = set(json.load(infile))
+    def load_from_file(self):
+        if os.path.exists(self.filename):
+            with open(self._filename, 'r') as file:
+                tmp_container = set(json.load(file))
+                for i in tmp_container:
+                    self._storage.add(i)

@@ -59,7 +59,8 @@ def exec_command(command: str, arguments: str, storage: Container) -> bool:
         case 'save':
             storage.save
             print('Container was saved successefully')
-
+        case 'load':
+            storage.load_from_file()
 
 
 print('Welcome to my own set!!!')
