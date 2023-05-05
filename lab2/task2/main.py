@@ -61,6 +61,17 @@ def exec_command(command: str, arguments: str, storage: Container) -> bool:
             print('Container was saved successefully')
         case 'load':
             storage.load_from_file()
+        case 'exit':
+            ask_save_container(storage)
+            return False
+        case 'switch':
+            ask_save_container(storage)
+            storage.switch(arguments)
+            greeting(arguments)
+            ask_load_container(storage)
+        case _:
+            print('Such command not found')
+    return True
 
 
 print('Welcome to my own set!!!')

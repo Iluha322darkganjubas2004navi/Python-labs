@@ -45,3 +45,7 @@ class Container:
                 tmp_container = set(json.load(file))
                 for i in tmp_container:
                     self._storage.add(i)
+    def switch (self, username :str):
+        self._username = username
+        self._filename = f'./data/{username}.json'
+        self._storage.clear()
