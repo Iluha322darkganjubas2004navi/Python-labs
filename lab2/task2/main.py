@@ -34,6 +34,10 @@ def ask_load_container(storage: Container):
         storage.load()
 def greeting(username: str):
     print(f'Hello, {username}!')
+def exec_command(command: str, arguments: str, storage: Container) -> bool:
+    match command:
+        case 'help':
+            print(Commands)
 
 print('Welcome to my own set!!!')
 username=input('Enter username: ')
