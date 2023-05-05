@@ -1,111 +1,48 @@
-import unittest
-import task1
+import text_statistics
 
 
-class TestCountSentences(unittest.TestCase):
-    def test1_for_sentences(self):
-        expected = 0
-        actual = task1.amount_of_sentences('')
-        self.assertEqual(actual, expected,
-            'Error in test1_for_sentences, sentences must be ' + str(expected))
-
-    def test2_for_sentences(self):
-        text = 'Sdfgdsfg, mr. sdfaassd. ashdfjh etc. ajsdfja PH.D. - asdfasdf?'
-        expected = 2
-        actual = task1.amount_of_sentences(text)
-        self.assertEqual(actual, expected,
-            'Error in test2_for_sentences, sentences must be ' + str(expected))
-
-    def test3_for_sentences(self):
-        text = 'Hahsdgfhasgdf!!! asdfasdasdf; dsf... jhgfd... gasdf etc. aadsfaasd?'
-        expected = 4
-        actual = task1.amount_of_sentences(text)
-        self.assertEqual(actual, expected,
-            'Error in test3_for_sentences, sentences must be ' + str(expected))
+def test_sentences_split_1():
+    res = text_statistics.sentences_split('Heh! Babijon?')
+    assert len(res) == 2
+    assert res == ['Heh!', 'Babijon?']
 
 
-class TestCountNonDeclarativeSentences(unittest.TestCase):
-    def test1_for_ND_sentences(self):
-        expected = 0
-        actual = task1.amount_of_non_declarative_sentences('')
-        self.assertEqual(actual, expected,
-            'Error in test1_for_ND_sentences, sentences must be ' + str(expected))
-
-    def test2_for_ND_sentences(self):
-        text = 'Sdfgdsfg, mr. sdfaassd. ashdfjh etc. ajsdfja PH.D. - asdfasdf?'
-        expected = 1
-        actual = task1.amount_of_non_declarative_sentences(text)
-        self.assertEqual(actual, expected,
-            'Error in test2_for_ND_sentences, sentences must be ' + str(expected))
-
-    def test3_for_ND_sentences(self):
-        text = 'Hahsdgfhasgdf!!! asdfasdasdf; dsf... jhgfd... gasdf etc. aadsfaasd?'
-        expected = 2
-        actual = task1.amount_of_non_declarative_sentences(text)
-        self.assertEqual(actual, expected,
-            'Error in test3_for_ND_sentences, sentences must be ' + str(expected))
+def test_sentences_split_2():
+    res = text_statistics.sentences_split('Test?.. "Test, test, test!" Test...')
+    assert len(res) == 3
+    assert res == ['Test?..', '"Test, test, test!"', 'Test...']
 
 
-class TestGetAverageSentenceLength(unittest.TestCase):
-    def test1_for_average_sentence_length(self):
-        expected = 0
-        actual = task1.average_sentence_lenght('')
-        self.assertEqual(actual, expected,
-            'Error in test1_for_average_sentence_length, length must be ' + str(expected))
-
-    def test2_for_average_sentence_length(self):
-        text = 'Sdfgdsfg, mr. sdfaassd. ashdfjh etc. ajsdfja PH.D. - asdfasdf?'
-        expected = round(46 / 2, 2)
-        actual = task1.average_sentence_lenght(text)
-        self.assertEqual(actual, expected,
-            'Error in test2_for_average_sentence_length, length must be ' + str(expected))
-
-    def test3_for_average_sentence_length(self):
-        text = 'Hahsdgfhasgdf!!! asdfasdasdf; dsf... jhgfd... gasdf etc. aadsfaasd?'
-        expected = round(49 / 4, 2)
-        actual = task1.average_sentence_lenght(text)
-        self.assertEqual(actual, expected,
-            'Error in test3_for_average_sentence_length, length must be ' + str(expected))
+def test_sentences_split_3():
+    res = text_statistics.sentences_split('E. G. Brendon. Dr. Bro! Mr.Fento, \'test!..\'')
+    assert len(res) == 3
+    assert res == ['E. G. Brendon.', 'Dr. Bro!', 'Mr. Fento, \'test!..\'']
 
 
-class TestAvgWordLength(unittest.TestCase):
-    def test1_for_average_word_length(self):
-        expected = 0
-        actual = task1.average_word_lenght('')
-        self.assertEqual(actual, expected,
-            'Error in test1_for_average_word_length, length must be ' + str(expected))
+def test_sentences_amount_1():
+    sent = text_statistics.sentences_split('Mr.Mia! How are you?.. I\'m fine!')
+    res = text_statistics.sentences_amount(sent)
+    assert res == 3
 
-    def test2_for_average_word_length(self):
-        text = 'Sdfgdsfg, mr. sdfaassd. ashdfjh etc. ajsdfja PH.D. - asdfasdf?'
-        expected = round(46 / 9, 2)
-        actual = task1.average_word_lenght(text)
-        self.assertEqual(actual, expected,
-            'Error in test2_for_average_word_length, length must be ' + str(expected))
 
-    def test3_for_average_word_length(self):
-        text = 'Hahsdgfhasgdf!!! asdfasdasdf; dsf... jhgfd... gasdf etc. aadsfaasd?'
-        expected = round(49 / 7, 2)
-        actual = task1.average_word_lenght(text)
-        self.assertEqual(actual, expected,
-            'Error in test3_for_average_word_length, length must be ' + str(expected))
+def test_non_declarative_sentences_amount_1():
+    sent = text_statistics.sentences_split('Test!.. Test... Test. Test?.. Test! Test test test.')
+    res = text_statistics.non_declarative_sentences_amount(sent)
+    assert res == 3
 
-class TestTopKRepeatedNgram(unittest.TestCase):
-    def test1_for_top_k_repeated_ngram(self):
-        expected = []
-        actual = task1.top_k_repeated_n_grams('')
-        self.assertEqual(actual, expected,
-            'Error in test1_for_top_k_repeated_ngram, it\'s must be ' + str(expected))
 
-    def test2_for_top_k_repeated_ngram(self):
-        text = 'Hsdgfgdsf, My favorite food burger. And theres no repeated words.'
-        expected = [('hsdgfgdsf my favorite', 1), ('my favorite food', 1), ('favorite food burger', 1)]
-        actual = task1.top_k_repeated_n_grams(text, 3, 3)
-        self.assertListEqual(actual, expected,
-            'Error in test2_for_top_k_repeated_ngram, it\'s must be ' + str(expected))
+def test_average_sentence_length_1():
+    sent = text_statistics.sentences_split('Test!.. Test... Test Test?.. Test test test.')
+    res = text_statistics.average_sentence_length(sent)
+    assert res == 7
 
-    def test3_for_top_k_repeated_ngram(self):
-        text = 'hasdhf my favorite food is a burger my favorite burger is a burger'
-        expected = [('is a burger', 2), ('hasdhf my favorite', 1), ('my favorite food', 1)]
-        actual = task1.top_k_repeated_n_grams(text, 3, 3)
-        self.assertListEqual(actual, expected,
-            'Error in test3_for_top_k_repeated_ngram, it\'s must be ' + str(expected))
+
+def test_average_word_length_1():
+    res = text_statistics.average_word_length('Test test. testing')
+    assert res == 5
+
+
+def test_top_n_grams_1():
+    sent = text_statistics.sentences_split('Ment tot. Ment tot ment tot ment bra bru bra tot bra bru. Bru bra bru!..')
+    res = text_statistics.top_n_grams(5, 2, sent)
+    assert res == {"('ment', 'tot')": 3, "('bra', 'bru')": 3, "('tot', 'ment')": 2, "('bru', 'bra')": 2, "('ment', 'bra')": 1}
