@@ -1,7 +1,7 @@
 from enum import Enum
 
-from Serializers import XmlSerializer
-from Serializers import JsonSerializer
+from serializers import SerializerXml
+from serializers import SerializerJson
 
 
 class SerializerType(Enum):
@@ -14,10 +14,10 @@ class SerializersFactory:
     def create_serializer(st: SerializerType):
 
         if st == SerializerType.JSON:
-            return JsonSerializer()
+            return SerializerJson()
 
         elif st == SerializerType.XML:
-            return XmlSerializer()
+            return SerializerXml()
 
         else:
             raise Exception("Unknown type of serialization")

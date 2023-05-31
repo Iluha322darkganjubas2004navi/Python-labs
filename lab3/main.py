@@ -1,4 +1,4 @@
-from Serializers.serializers_factory import SerializersFactory, SerializerType
+from serializers.serializers_factory import SerializersFactory, SerializerType
 import math
 
 

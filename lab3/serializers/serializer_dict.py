@@ -1,10 +1,10 @@
 import inspect
-from Serializers import nonetype, moduletype, codetype, celltype, \
+from serializers import nonetype, moduletype, codetype, celltype, \
                           functype, bldinfunctype, \
                           mapproxytype, wrapdesctype, metdesctype, getsetdesctype, \
                           CODE_PROPS, UNIQUE_TYPES
 
-class DictSerializer:
+class SerializerDict:
     TYPE_KW = "type"
     SOURCE_KW = "source"
 

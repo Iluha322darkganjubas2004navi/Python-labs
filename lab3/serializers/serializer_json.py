@@ -1,13 +1,13 @@
 import re
 import regex
-from Serializers import BaseSerializer
-from Serializers import DictSerializer
+from serializers import SerializerBase
+from serializers import SerializerDict
 
 
-from Serializers import nonetype
+from serializers import nonetype
 
 
-class JsonSerializer(BaseSerializer):
+class SerializerJson(SerializerBase):
     INF_LITERAL = str(1E1000)
     NAN_LITERAL = str(1E1000 / 1E1000)
 
@@ -32,7 +32,7 @@ class JsonSerializer(BaseSerializer):
                     fr"{ARRAY_PATTERN}|{OBJECT_PATTERN})\s*"
 
     def dumps(self, obj) -> str:
-        obj = DictSerializer.to_dict(obj)
+        obj = SerializerDict.to_dict(obj)
         return self.__dumps_from_dict(obj)
 
     def __dumps_from_dict(self, obj) -> str:
@@ -59,7 +59,7 @@ class JsonSerializer(BaseSerializer):
 
     def loads(self, string: str):
         obj = self.__loads_to_dict(string)
-        return DictSerializer.from_dict(obj)
+        return SerializerDict.from_dict(obj)
 
     def __loads_to_dict(self, string: str):
         string = string.strip()

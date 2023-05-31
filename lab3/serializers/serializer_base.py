@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class BaseSerializer(ABC):
+class SerializerBase(ABC):
     @abstractmethod
     def dumps(self, obj) -> str:
         pass

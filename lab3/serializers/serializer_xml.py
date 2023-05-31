@@ -1,13 +1,13 @@
 import re
 
 import regex
-from Serializers import BaseSerializer
-from Serializers import DictSerializer
+from serializers import SerializerBase
+from serializers import SerializerDict
 
-from Serializers import nonetype
+from serializers import nonetype
 
 
-class XmlSerializer(BaseSerializer):
+class SerializerXml(SerializerBase):
     NONE_LITERAL = "null"
 
     KEY_GROUP_NAME = "key"
@@ -28,7 +28,7 @@ class XmlSerializer(BaseSerializer):
                                 fr"(?P<{VALUE_GROUP_NAME}>([^<>]*)|(?R)+)\</(?:{ELEMENTARY_NAMES_PATTERN})\>)"
 
     def dumps(self, obj) -> str:
-        obj = DictSerializer.to_dict(obj)
+        obj = SerializerDict.to_dict(obj)
         return self.__dumps_from_dict(obj, is_first=True)
 
     def __dumps_from_dict(self, obj, is_first=False) -> str:
@@ -53,7 +53,7 @@ class XmlSerializer(BaseSerializer):
 
     def loads(self, string: str):
         obj = self.__loads_to_dict(string, is_first=True)
-        return DictSerializer.from_dict(obj)
+        return SerializerDict.from_dict(obj)
 
     def __loads_to_dict(self, string: str, is_first=False):
         string = string.strip()
