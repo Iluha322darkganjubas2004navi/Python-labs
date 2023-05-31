@@ -1,82 +1,58 @@
-from serializers.json.json_serializer import JsonSerializer
-from serializers.xml.xml_serializer import XmlSerializer
+from Serializers.serializers_factory import SerializersFactory, SerializerType
+import math
 
 
-class T:
-    A = "asdf"
-    B = 11
-    C = 14
+def my_decor(meth):
+    def inner(*args, **kwargs):
+        print('I am in my_decor')
+        return meth(*args, **kwargs)
 
-
-def my_decorator(func):
-    def cwrapper(*args, **kwargs):
-        print("start func")
-        func(*args, **kwargs)
-        print("end func")
-
-    return cwrapper
-
-
-def for_dec(a):
-    print("Hello world", a)
-
-
-df = my_decorator(for_dec)
+    return inner
 
 
 class A:
-    a = "A"
+    x = 10
+
+    @my_decor
+    def my_sin(self, c):
+        return math.sin(c * self.x)
+
+    @staticmethod
+    def stat():
+        return 145
+
+    def __str__(self):
+        return 'AAAAA'
+
+    def __repr__(self):
+        return 'AAAAA'
 
 
-class B(A):
-    a = "B"
+class B:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    @classmethod
+    def class_meth(cls):
+        return math.pi
 
 
-class C(A):
-    a = "C"
+class C(A, B):
+    pass
 
 
-class D(B, C):
-    a = "D"
+ser = SerializersFactory.create_serializer(SerializerType.JSON)
 
+C_ser = ser.dumps(C)
+C_des = ser.loads(C_ser)
 
-class Kek:
-    classmethod
+c = C(1, 2)
+c_ser = ser.dumps(c)
+c_des = ser.loads(c_ser)
 
-    def clm(self):
-        return 5
-
-    staticmethod
-
-    def sm(self):
-        return 4
-
-
-def decorate(function):
-    def wrap(*args):
-        if len(args) >= 10:
-            raise ("10+")
-
-        function(args)
-
-    return wrap
-
-
-@decorate
-def func(*args):
-    return args.__len__()
-
-
-if __name__ == '__main__':
-
-    with open("json_file.json", "w") as file:
-        JsonSerializer.dump(func(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), file)
-    with open("json_file.json", "r") as file:
-        obj = JsonSerializer.load(file)
-        print(obj)
-
-    with open("xml_file.xml", "w") as file:
-        XmlSerializer.dump((1, 2, 3, 4, 5, 6), file)
-    with open("xml_file.xml", "r") as file:
-        obj = XmlSerializer.load(file)
-        print(obj)
+print(c_des)
+print(c_des.x)
+print(c_des.my_sin(10))
+print(C_des.stat())
+print(c_des.class_meth())
