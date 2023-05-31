@@ -1,0 +1,15 @@
+<str xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">{
+  &quot;type&quot;: &quot;type&quot;,
+  &quot;source&quot;: {
+    &quot;__name__&quot;: &quot;A&quot;,
+    &quot;__bases__&quot;: {
+      &quot;type&quot;: &quot;tuple&quot;,
+      &quot;source&quot;: []
+    },
+    &quot;__dict__&quot;: {
+      &quot;__module__&quot;: &quot;__main__&quot;,
+      &quot;a&quot;: &quot;A&quot;,
+      &quot;__doc__&quot;: null
+    }
+  }
+}</str>
